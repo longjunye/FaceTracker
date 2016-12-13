@@ -81,6 +81,7 @@ class FaceGraphic extends GraphicOverlay.Graphic {
 		mBoxPaint.setColor(selectedColor);
 		mBoxPaint.setStyle(Paint.Style.STROKE);
 		mBoxPaint.setStrokeWidth(BOX_STROKE_WIDTH);
+		decoration = BitmapFactory.decodeResource(context.getResources(), R.drawable.glasses_classic);
 	}
 
 	void setId(int id) {
@@ -109,25 +110,25 @@ class FaceGraphic extends GraphicOverlay.Graphic {
 		// Draws a circle at the position of the detected face, with the face's track id below.
 		float x = translateX(face.getPosition().x + face.getWidth() / 2);
 		float y = translateY(face.getPosition().y + face.getHeight() / 2);
-		Matrix matrix = new Matrix();
-		matrix.postRotate(face.getEulerZ());
-		Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.glasses_classic),
-			(int) (face.getWidth()
-				* 0.70),
-			(int) (face.getHeight() * 0.45),
+//		Matrix matrix = new Matrix();
+//		matrix.postRotate(face.getEulerY());
+		Bitmap bitmap = Bitmap.createScaledBitmap(decoration,
+			(int) (face.getWidth()),
+			(int) (face.getWidth()),
 			false);
-		Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+//		Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 		Paint p = new Paint();
 		p.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-		canvas.drawBitmap(rotatedBitmap, x - rotatedBitmap.getWidth() / 2, y - rotatedBitmap.getHeight() / 2, p);
+		canvas.drawBitmap(bitmap, x - bitmap.getWidth() / 2, y - bitmap.getHeight() / 2, p);
+//		canvas.drawBitmap(rotatedBitmap, x - rotatedBitmap.getWidth() / 2, y - rotatedBitmap.getHeight() / 2, p);
 		// Draws a bounding box around the face.
-		float xOffset = scaleX(face.getWidth() / 2.0f);
-		float yOffset = scaleY(face.getHeight() / 2.0f);
-		float left = x - xOffset;
-		float top = y - yOffset;
-		float right = x + xOffset;
-		float bottom = y + yOffset;
-		canvas.drawRect(left, top, right, bottom, mBoxPaint);
+//		float xOffset = scaleX(face.getWidth() / 2.0f);
+//		float yOffset = scaleY(face.getHeight() / 2.0f);
+//		float left = x - xOffset;
+//		float top = y - yOffset;
+//		float right = x + xOffset;
+//		float bottom = y + yOffset;
+//		canvas.drawRect(left, top, right, bottom, mBoxPaint);
 	}
 
 	/**

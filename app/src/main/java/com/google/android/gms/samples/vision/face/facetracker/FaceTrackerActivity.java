@@ -127,7 +127,8 @@ public final class FaceTrackerActivity extends AppCompatActivity {
 //                .setLandmarkType(FaceDetector.ALL_LANDMARKS)
                 .setProminentFaceOnly(true)
                 .setMinFaceSize(0.5f)
-                .setClassificationType(FaceDetector.FAST_MODE)
+                .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
+                .setMode(FaceDetector.FAST_MODE)
                 .build();
 
         detector.setProcessor(
